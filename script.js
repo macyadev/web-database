@@ -10,6 +10,8 @@ const APP = {
     data: [],
     init() {
         APP.addListeners();
+        // フォーカスを名前の入力欄に移動する
+        form.name.focus();
     },
     addListeners() {
         // フォーム送信時のイベントを監視
@@ -66,6 +68,12 @@ const APP = {
             // 編集可能にする
             cell.contentEditable = true;
             cell.focus();
+            // エンターキーが押された時のイベント
+            cell.addEventListener('keydown', (e) => {
+                if (e.keyCode === 13) {
+                    cell.blur();
+                }
+            });
             // データの更新
             editBtn.addEventListener('click', () => {
                 // 配列データの中身を画面入力値にする
@@ -87,7 +95,7 @@ const APP = {
                 .concat("\n");
         });
         // 第一引数がデータ、第二引数がファイル名、第三引数がファイルの種類
-        let file = new File([str], `テスト${Date.now()}.csv`, { type: "text/csv" });
+        let file = new File([str], `${Date.now()}.csv`, { type: "text/csv" });
 
         aTag.href = URL.createObjectURL(file);
         aTag.download = file.name;
