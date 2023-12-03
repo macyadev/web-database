@@ -16,10 +16,12 @@ const APP = {
         form.addEventListener('submit', APP.createData);
         // ダブルクリックで編集するイベントを監視
         tbody.addEventListener('dblclick', APP.editData);
-        // CSVに出力
+        // CSVに出力するイベントを監視
         exportBtn.addEventListener('click', APP.exportData);
     },
-    // 新しいデータを作るイベント
+
+    // 作成機能
+    // 作成ボタンが押された時のイベント
     createData(e) {
         // エンターキーでの実行をキャンセル
         e.preventDefault();
@@ -50,7 +52,9 @@ const APP = {
         // フォーカスを名前の入力欄に移動する
         form.name.focus();
     },
-    // データを編集するイベント
+
+    // 編集機能
+    // tdがダブルクリックされた時のイベント
     editData(e) {
         // 修正したセルを認識する
         let cell = e.target.closest("td");
@@ -69,7 +73,9 @@ const APP = {
             });
         }
     },
-    // データをCSVに出力するイベント
+
+    // CSV出力機能
+    // CSV出力ボタンが押された時のイベント
     exportData() {
         let str = "名前,住所,年齢,電話番号\n";
         // 配列dataを文字列のテキストに変換する
