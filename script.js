@@ -1,6 +1,7 @@
 // 要素の取得
 const form = document.querySelector('.form');
 const exportBtn = document.querySelector('.exportBtn');
+const aTag = exportBtn.querySelector('a');
 const editBtn = document.querySelector('.editBtn');
 const tbody = document.querySelector('.tbody');
 
@@ -15,6 +16,8 @@ const APP = {
         form.addEventListener('submit', APP.createData);
         // ダブルクリックで編集するイベントを監視
         tbody.addEventListener('dblclick', APP.editData);
+        // CSVに出力
+        exportBtn.addEventListener('click', APP.exportData);
     },
     // 新しいデータを作るイベント
     createData(e) {
@@ -66,6 +69,23 @@ const APP = {
             });
         }
     },
+    // データをCSVに出力するイベント
+    exportData() {
+        let str = "名前,住所,年齢,電話番号\n";
+        // 配列dataを文字列のテキストに変換する
+        APP.data.forEach((row) => {
+            // データを文字列に変換して、行ごとに折り返す
+            str += row
+                .map((col) => JSON.stringify(col))
+                .join(",")
+                .concat("\n");
+        });
+        // 第一引数がデータ、第二引数がファイル名、第三引数がファイルの種類
+        let file = new File([str], `テスト${Date.now()}.csv`, { type: "text/csv" });
+
+        aTag.href = URL.createObjectURL(file);
+        aTag.download = file.name;
+    }
 };
 
 // DOMの読み込みが完了したらAPP.initを実行
