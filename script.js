@@ -2,7 +2,6 @@
 const form = document.querySelector('.form');
 const exportBtn = document.querySelector('.exportBtn');
 const aTag = exportBtn.querySelector('a');
-const editBtn = document.querySelector('.editBtn');
 const tbody = document.querySelector('.tbody');
 
 const APP = {
@@ -74,10 +73,12 @@ const APP = {
                     cell.blur();
                 }
             });
-            // データの更新
-            editBtn.addEventListener('click', () => {
-                // 配列データの中身を画面入力値にする
+            // フォーカスが外れた時にデータを更新する
+            cell.addEventListener('blur', () => {
+                // データの更新
                 APP.data[row][col] = cell.textContent;
+                // 編集不可にする
+                cell.contentEditable = false;
             });
         }
     },
