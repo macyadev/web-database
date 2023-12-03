@@ -11,9 +11,12 @@ const APP = {
         APP.addListeners();
     },
     addListeners() {
-        // フォームの送信イベントを監視
+        // フォーム送信時のイベントを監視
         form.addEventListener('submit', APP.createData);
+        // ダブルクリックで編集するイベントを監視
+        tbody.addEventListener('dblclick', APP.editData);
     },
+    // 新しいデータを作るイベント
     createData(e) {
         // エンターキーでの実行をキャンセル
         e.preventDefault();
@@ -24,13 +27,17 @@ const APP = {
 
         // テーブルに行を追加する（タグを用意する）
         const tr = document.createElement('tr');
+        tr.innerHTML = "";
+        // 何行目かを認識するために属性を追加する
+        tr.setAttribute('data-row', tbody.querySelectorAll('tr').length);
+
         // テーブルに行を追加する（内容を入れる）
-        tr.innerHTML += `
-            <td>${formData.get('name')}</td>
-            <td>${formData.get('address')}</td>
-            <td>${formData.get('age')}</td>
-            <td>${formData.get('tel')}</td>
-        `;
+        let col = 0;
+        for (let entry of formData.entries()) {
+            tr.innerHTML += `<td data-col="${col}" data-name="${entry[0]}">${entry[1]}</td>`;
+            col++;
+        }
+
         // テーブルに行を追加する（テーブルに追加する）
         tbody.appendChild(tr);
 
@@ -39,6 +46,25 @@ const APP = {
 
         // フォーカスを名前の入力欄に移動する
         form.name.focus();
+    },
+    // データを編集するイベント
+    editData(e) {
+        // 修正したセルを認識する
+        let cell = e.target.closest("td");
+        if (cell) {
+            // 行番号の取得（tdの親であるtrを確認する）
+            let row = cell.parentElement.getAttribute("data-row");
+            // 列番号の取得
+            let col = cell.getAttribute("data-col");
+            // 編集可能にする
+            cell.contentEditable = true;
+            cell.focus();
+            // データの更新
+            editBtn.addEventListener('click', () => {
+                // 配列データの中身を画面入力値にする
+                APP.data[row][col] = cell.textContent;
+            });
+        }
     },
 };
 
