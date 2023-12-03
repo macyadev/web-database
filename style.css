@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 32px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+input {
+    font-size: 16px;
+    padding: 4px;
+}
+
+button {
+    background: #444;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.result {
+    margin-top: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #444;
+    width: 100%;
+    margin-top: 16px;
+}
+
+th, td {
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #444;
+}
