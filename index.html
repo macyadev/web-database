@@ -5,10 +5,58 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>web-database</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
     </head>
 
     <body>
-
+        <div class="container">
+            <form action="" class="form">
+                <p>
+                    <label for="name">名前</label>
+                    <input type="text" name="name" id="name">
+                </p>
+                <p>
+                    <label for="address">住所</label>
+                    <input type="text" name="address" id="address">
+                </p>
+                <p>
+                    <label for="age">年齢</label>
+                    <input type="text" name="age" id="age">
+                </p>
+                <p>
+                    <label for="tel">電話番号</label>
+                    <input type="text" name="tel" id="tel">
+                </p>
+                <p>
+                    <button class="btnSave">作成</button>
+                </p>
+            </form>
+        </div>
+        <div class="results">
+            <p>
+                <button class="editbtn">変更を保存</button>
+                <button class="exportBtn"><a href="" download="">CSVに出力</a></button>
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>住所</th>
+                        <th>年齢</th>
+                        <th>電話番号</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>山田太郎</td>
+                        <td>東京都</td>
+                        <td>20</td>
+                        <td>090-0000-0000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 
 </html>
