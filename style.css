@@ -8,21 +8,28 @@ body {
     padding: 32px;
 }
 
-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.form-group {
+    margin-bottom: 30px;
 }
 
-form p {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+label {
+    display: block;
+    font-weight: bold;
 }
 
 input {
     font-size: 16px;
     padding: 4px;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.required {
+    color: white;
+    background: red;
+    padding: 1px 4px;
+    font-size: 10px;
+    margin-left: 10px;
 }
 
 button {
@@ -31,10 +38,11 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 8px;
-    margin-right: 8px;
     cursor: pointer;
     padding: 8px 16px;
+    margin: 16px 0;
 }
+
 
 button a {
     color: #fff;
